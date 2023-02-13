@@ -1,0 +1,26 @@
+html {
+    box-sizing: border-box;
+}
+
+*, ::after, ::before {
+    box-sizing: inherit;
+}
+
+/* .body {
+    max-width: 1200px;
+    padding: 5%;
+    margin: auto;
+    background-color: #e6dddd;
+    line-height: 1.5;
+    font-family: 'Roboto', sans-serif;
+}
+
+.header {
+    color: #db143c;
+    background-color: #f8f4f4f8;
+    text-align: center;
+    border-radius: 15px;
+    max-width: 800px;
+    margin: auto;
+    text-shadow: 2px 2px 8px #918686;
+} */
