@@ -14,7 +14,6 @@
         tasks.push({
             content: newTaskContent,
         });
-
         render();
     };
 
@@ -50,22 +49,18 @@
         let htmlString = "";
 
         for (const task of tasks) {
-            htmlString += `
-                <li
-                    ${task.done ? " style=\"text-decoration: line-through\"" : ""}
-                >
-                    <button class="js-done">zrobione?</button>    
-                    <button class="js-remove">usuń</button>
-                    ${task.content}
-                </li>
-            `;
+            htmlString +=
+                `<li class="list__item">
+                    <button class="list__button js-done">${task.done ? "✔" : ""}</button>    
+                    <span class="${task.done ? " list__item--done" : ""}">${task.content}</span>
+                    <button class="list__button list__button--remove js-remove">🗑</button>
+                </li>`;
         }
 
         document.querySelector(".js-tasks").innerHTML = htmlString;
 
         bindEvents();
     };
-
 
     const onFormSubmit = (event) => {
         event.preventDefault();
