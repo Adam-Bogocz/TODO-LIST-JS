@@ -17,6 +17,16 @@
         render();
     };
 
+    const clearInput = () => {
+        const newTaskElement = document.querySelector(".js-newTask");
+        newTaskElement.value = "";
+    }
+
+    const focusInput = () => {
+        const newTaskElement = document.querySelector(".js-newTask");
+        newTaskElement.focus();
+    }
+
     const removeTask = (taskIndex) => {
         tasks.splice(taskIndex, 1);
         render();
@@ -68,10 +78,12 @@
         const newTaskContent = document.querySelector(".js-newTask").value.trim();
 
         if (newTaskContent === "") {
+            focusInput();
             return;
         }
 
         addNewTask(newTaskContent);
+        clearInput();
     };
 
     const init = () => {
