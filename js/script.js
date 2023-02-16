@@ -1,14 +1,5 @@
 {
-    const tasks = [
-        {
-            content: "nagrać lekcję",
-            done: false,
-        },
-        {
-            content: "zjeść pierogi",
-            done: true,
-        },
-    ];
+    const tasks = [];
 
     const addNewTask = (newTaskContent) => {
         tasks.push({
@@ -17,13 +8,9 @@
         render();
     };
 
-    const clearInput = () => {
+    const clearInputAndFocus = () => {
         const newTaskElement = document.querySelector(".js-newTask");
         newTaskElement.value = "";
-    }
-
-    const focusInput = () => {
-        const newTaskElement = document.querySelector(".js-newTask");
         newTaskElement.focus();
     }
 
@@ -78,12 +65,12 @@
         const newTaskContent = document.querySelector(".js-newTask").value.trim();
 
         if (newTaskContent === "") {
-            focusInput();
+            clearInputAndFocus();
             return;
         }
 
         addNewTask(newTaskContent);
-        clearInput();
+        clearInputAndFocus();
     };
 
     const init = () => {
