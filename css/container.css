@@ -1,17 +1,5 @@
 .container {
-    min-width: 300px;
-    margin: 3px 0px;
-    display: grid;
-    justify-content:left;
-    justify-items: 100%;
-    grid-template-rows: 50px;
-    grid-template-columns: 100%;
-}
-
-.container__item {
-    margin: 1px;
-    background-color: #ffffff;
-    display: flex;
-    align-items: center;
+    max-width: 1000px;
     padding: 20px;
+    margin: 0 auto;
 }

@@ -7,9 +7,7 @@ html {
 }
 
 .body {
-    min-width: 300px;
-    margin: 6%;
-    background-color: #ddd;
+    background-color: #eee;
     font-family: 'Kanit', sans-serif;
-    word-break: break-word;
+    word-break: break-word;   
 }

@@ -1,18 +1,14 @@
 {
-    const tasks = [];
+    let tasks = [];
+    let hideDoneTasks = false;      // zmienna używana do ukrywania przycisków - kliknięcie w przycisk musi ją przełączać
 
     const addNewTask = (newTaskContent) => {
-        tasks.push({
-            content: newTaskContent,
-        });
+        tasks = [
+            ...tasks,
+            { content: newTaskContent },
+        ];
         render();
     };
-
-    const clearInputAndFocus = () => {
-        const newTaskElement = document.querySelector(".js-newTask");
-        newTaskElement.value = "";
-        newTaskElement.focus();
-    }
 
     const removeTask = (taskIndex) => {
         tasks.splice(taskIndex, 1);
@@ -20,11 +16,12 @@
     }
 
     const toggleTaskDone = (taskIndex) => {
+        // tasks = tasks.map 
         tasks[taskIndex].done = !tasks[taskIndex].done;
         render();
     }
 
-    const bindEvents = () => {
+    const bindRemoveEvents = () => {
         const removeButtons = document.querySelectorAll(".js-remove");
 
         removeButtons.forEach((removeButtons, index) => {
@@ -32,7 +29,9 @@
                 removeTask(index);
             });
         });
+    }
 
+    const bindToggleDoneEvents = () => {
         const toggleDoneButtons = document.querySelectorAll(".js-done");
 
         toggleDoneButtons.forEach((toggleDoneButton, index) => {
@@ -42,36 +41,51 @@
         });
     }
 
-    const render = () => {
+    const renderTasks = () => {
         let htmlString = "";
-
+        // w przycisku ukrytym dodajemy atrybut disabled
         for (const task of tasks) {
-            htmlString +=
-                `<li class="list__item">
-                    <button class="list__button js-done">${task.done ? "✔" : ""}</button>    
+            htmlString += `
+                <li 
+                    class="list__item"
+                >
+                    <button class="list__button list__button--toggleDone js-done">
+                    ${task.done ? "✔" : ""}
+                    </button>    
                     <span class="${task.done ? " list__item--done" : ""}">${task.content}</span>
                     <button class="list__button list__button--remove js-remove">🗑</button>
-                </li>`;
+                </li>
+            `;
         }
 
         document.querySelector(".js-tasks").innerHTML = htmlString;
+    };
 
-        bindEvents();
+    const renderButtons = () => { };         // funkcja do renderowania przycisków
+
+    const bindButtonsEvents = () => { };   // tutaj pojawią się eventLitener do przycisków  np. ukończ zadania który czasem jest (jeżeli ...)
+
+    const render = () => {              // podzielić render na 2 rózne funkcje jak wyżej
+        renderTasks();
+        renderButtons();
+        bindRemoveEvents();
+        bindToggleDoneEvents();
+        bindButtonsEvents();
     };
 
     const onFormSubmit = (event) => {
         event.preventDefault();
 
-        const newTaskContent = document.querySelector(".js-newTask").value.trim();
+        const newTaskElement = document.querySelector(".js-newTask");
+        const newTaskContent = newTaskElement.value.trim();
 
-        if (newTaskContent === "") {
-            clearInputAndFocus();
-            return;
+        if (newTaskContent !== "") {
+            addNewTask(newTaskContent);
+            newTaskElement.value = "";
         }
 
-        addNewTask(newTaskContent);
-        clearInputAndFocus();
-    };
+        newTaskElement.focus();
+    }
 
     const init = () => {
         render();

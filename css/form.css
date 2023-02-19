@@ -1,37 +1,31 @@
 .form {
-    width: 100%;
-    height: 30px;
     display: grid;
     grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: 20px;
+    grid-gap: 20px;
 }
 
 @media (max-width: 768px) {
     .form {
-        height: auto;
         grid-template-columns: 1fr;
     }
 }
 
 .form__input {
-    width: 100%;
-    height: 100%;
-    padding: 0px 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
 }
 
 .form__button {
-    width: 130px;
-    height: 100%;
-    background-color: #178882;
-    color: #ffffffdc;
+    padding: 10px;
+    background-color: #008080;
+    color: #ffffff;
     border: none;
-    cursor: pointer;
 }
 
-@media (max-width: 768px) {
-    .form__button {
-        height: 30px;
-        width: 100%;
-    }
+.form__button:hover {
+    background: #009999;
+}
+
+.form__button:active {
+    background: #00b3b3;
 }
