@@ -17,15 +17,15 @@
 
 .form__button {
     padding: 10px;
-    background-color: #008080;
-    color: #ffffff;
+    background-color: hsl(180, 100%, 25%);
+    color: white;
     border: none;
 }
 
 .form__button:hover {
-    background: #009999;
+    background: hsl(180, 100%, 30%);
 }
 
 .form__button:active {
-    background: #00b3b3;
+    background: hsl(180, 100%, 35%);
 }

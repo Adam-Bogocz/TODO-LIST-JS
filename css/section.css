@@ -4,11 +4,39 @@
     box-shadow: 0 0 5px #ddd
 }
 
+
+
+.section__tasksList {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    grid-gap: 20px;
+    padding-right: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+@media (max-width: 768px) {
+    .section__tasksList {
+        grid-template-columns: 1fr;
+    }
+}
+
 .section__header {
-    font-size: 20px;
     padding: 20px;
+    font-size: 20px;
     margin: 0;
     border-bottom: 1px solid #ddd;
+}
+
+.header--list {
+    border-bottom: none;
+}
+
+.header__button {
+    color: hsl(180, 100%, 25%);
+    border: none;
+    background: none;
+    padding: 10px;
+    border: none;
 }
 
 .section__body {

@@ -3,23 +3,29 @@
     let hideDoneTasks = false;      // zmienna używana do ukrywania przycisków - kliknięcie w przycisk musi ją przełączać
 
     const addNewTask = (newTaskContent) => {
-        tasks = [
-            ...tasks,
-            { content: newTaskContent },
-        ];
+        tasks = [...tasks, { content: newTaskContent }];
         render();
     };
 
     const removeTask = (taskIndex) => {
-        tasks.splice(taskIndex, 1);
+        tasks = [...tasks.slice(0, taskIndex), ...tasks.slice(taskIndex + 1)];
         render();
-    }
+    };
 
     const toggleTaskDone = (taskIndex) => {
-        // tasks = tasks.map 
-        tasks[taskIndex].done = !tasks[taskIndex].done;
+        tasks = [
+            ...tasks.slice(0, taskIndex),
+            { ...tasks[taskIndex], done: !tasks[taskIndex].done },
+            ...tasks.slice(taskIndex + 1),
+        ];
+        console.log(tasks);
         render();
-    }
+    };
+
+    const changeToAllDone = () => {
+        tasks = tasks.map((task) => ({...task, done:true}));
+        render();
+    };
 
     const bindRemoveEvents = () => {
         const removeButtons = document.querySelectorAll(".js-remove");
@@ -29,7 +35,7 @@
                 removeTask(index);
             });
         });
-    }
+    };
 
     const bindToggleDoneEvents = () => {
         const toggleDoneButtons = document.querySelectorAll(".js-done");
@@ -39,38 +45,58 @@
                 toggleTaskDone(index);
             });
         });
-    }
+    };
+
+    // function toggleArticleHidden(buttonName) {
+    //     buttonName.classList.toggle("article--hidden");
+    // }
+
+    // function addArticleHidden(buttonName) {
+    //     buttonName.classList.add("article--hidden");
+    // }
+
+    const bindButtonsEvents = () => {
+        const toggleDoneButtons = document.querySelectorAll(".js-hidden-done");
+        const changeToAllDoneButton = document.querySelectorAll(".js-done-all");
+
+        changeToAllDoneButton.forEach((changeToAllDoneButton, index) => {
+            changeToAllDoneButton.addEventListener("click", () => {
+                changeToAllDone(index);
+            });
+        });
+    };
+
+
+    // tutaj pojawią się eventLitener do przycisków  np. ukończ zadania który czasem jest (jeżeli ...)
 
     const renderTasks = () => {
         let htmlString = "";
-        // w przycisku ukrytym dodajemy atrybut disabled
+
         for (const task of tasks) {
             htmlString += `
-                <li 
-                    class="list__item"
-                >
+                <li class="list__item">
                     <button class="list__button list__button--toggleDone js-done">
-                    ${task.done ? "✔" : ""}
+                        ${task.done ? "✔" : ""}
                     </button>    
                     <span class="${task.done ? " list__item--done" : ""}">${task.content}</span>
-                    <button class="list__button list__button--remove js-remove">🗑</button>
+                    <button class="list__button list__button--remove js-remove">
+                        🗑
+                    </button>
                 </li>
             `;
-        }
+        };
 
         document.querySelector(".js-tasks").innerHTML = htmlString;
     };
 
     const renderButtons = () => { };         // funkcja do renderowania przycisków
 
-    const bindButtonsEvents = () => { };   // tutaj pojawią się eventLitener do przycisków  np. ukończ zadania który czasem jest (jeżeli ...)
-
     const render = () => {              // podzielić render na 2 rózne funkcje jak wyżej
         renderTasks();
         renderButtons();
         bindRemoveEvents();
         bindToggleDoneEvents();
-        bindButtonsEvents();
+        bindButtonsEvents();                                    // w przycisku ukrytym dodajemy atrybut disabled
     };
 
     const onFormSubmit = (event) => {

@@ -36,7 +36,11 @@
             </div>
         </section>
         <section class="section">
-            <h2 class="section__header">Lista zadań</h2>
+            <div class="section__tasksList">
+                <h2 class="tasksList__item section__header header--list">Lista zadań</h2>
+                <button class="tasksList__item header__button js-hidden-done">Ukryj ukończone</button>
+                <button class="tasksList__item header__button js-done-all">Ukończ wszystkie</button>
+            </div>
             <div class="section__body">
                 <ul class="list js-tasks"></ul>
             </div>
