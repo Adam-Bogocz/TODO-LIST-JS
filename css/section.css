@@ -4,8 +4,6 @@
     box-shadow: 0 0 5px #ddd
 }
 
-
-
 .section__tasksList {
     display: grid;
     grid-template-columns: 1fr auto auto;

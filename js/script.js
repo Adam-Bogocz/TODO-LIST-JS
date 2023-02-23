@@ -1,7 +1,6 @@
 {
     let tasks = [];
-    let hideDoneTasks = false;      // zmienna używana do ukrywania przycisków - kliknięcie w przycisk musi ją przełączać
-    let hideButton = false;
+    let hideDoneTasks = false;
 
     const addNewTask = (newTaskContent) => {
         tasks = [...tasks, { content: newTaskContent }];
@@ -60,28 +59,18 @@
         buttonName.classList.add("button--hidden");
     }
 
-    // function addArticleHidden(buttonName) {
-    //     buttonName.classList.add("article--hidden");
-    // }
-
     const bindButtonsEvents = () => {
         const hideDoneTasksButton = document.querySelector(".js-hidden-done");
         const changeToAllDoneButton = document.querySelector(".js-all-done");
 
-        // tasks.length !== 0 ? showHiddenButtons(hideDoneTasksButton) : hideButtons(hideDoneTasksButton);
         hideDoneTasksButton.addEventListener("click", () => {
             toggleHideDoneTasks();
         });
 
-        // tasks.length !== 0 ? showHiddenButtons(changeToAllDoneButton) : hideButtons(changeToAllDoneButton);
         changeToAllDoneButton.addEventListener("click", () => {
             changeToAllDone();
         });
     };
-
-
-
-    // tutaj pojawią się eventLitener do przycisków  np. ukończ zadania który czasem jest (jeżeli ...)
 
     const renderTasks = () => {
         let htmlString = "";
@@ -99,7 +88,6 @@
                 </li>
             `;
         };
-
         document.querySelector(".js-tasks").innerHTML = htmlString;
     };
 
@@ -114,12 +102,12 @@
             </button>`;
     };
 
-    const render = () => {              // podzielić render na 2 rózne funkcje jak wyżej
+    const render = () => {
         renderTasks();
         renderButtons();
         bindRemoveEvents();
         bindToggleDoneEvents();
-        bindButtonsEvents();                                    // w przycisku ukrytym dodajemy atrybut disabled
+        bindButtonsEvents();                
     };
 
     const onFormSubmit = (event) => {
@@ -132,7 +120,6 @@
             addNewTask(newTaskContent);
             newTaskElement.value = "";
         }
-
         newTaskElement.focus();
     }
 
