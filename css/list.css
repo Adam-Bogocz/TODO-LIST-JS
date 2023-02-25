@@ -17,6 +17,10 @@
     text-decoration: line-through;
 }
 
+.list__item--hidden {
+    display: none;
+}
+
 .list__button {
     border: none;
     color: white;
@@ -32,12 +36,10 @@
 
 .list__button--toggleDone:hover {
     background: hsl(120, 61%, 39%);
-    transform: scale(1.2);
 }
 
 .list__button--toggleDone:active {
     background: hsl(120, 61%, 44%);
-    transform: scale(1.3);
 }
 
 .list__button--remove {
@@ -46,10 +48,8 @@
 
 .list__button--remove:hover {
     background-color: hsl(348, 83%, 52%);
-    transform: scale(1.2);
 }
 
 .list__button--remove:active {
     background-color: hsl(348, 83%, 57%);
-    transform: scale(1.3);
 }
